@@ -1,0 +1,23 @@
+webapp:
+  build: application
+  volumes:
+    - ~/Projects/:/var/www/
+  tty: true
+nginx:
+  build: nginx
+  ports:
+    - "80:80"
+  volumes_from:
+    - webapp
+  links:
+    - php
+php:
+  build: php-fpm
+  volumes_from:
+    - webapp
+  links:
+    - db
+db:
+  image: postgres
+  volumes_from:
+    - webapp
