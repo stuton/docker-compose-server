@@ -1,8 +1,6 @@
-FROM ubuntu:latest
+FROM nginx
 
 MAINTAINER Anton Stuchinscky <winshiftq@gmail.com>
-
-RUN apt-get update && apt-get install -y nginx && rm /etc/nginx/sites-enabled/*
 
 ADD nginx.conf /etc/nginx/
 ADD config/ /etc/nginx/sites-enabled/
