@@ -33,5 +33,18 @@ php-7:
     - db
 db:
   image: postgres
+  environment:
+    POSTGRES_DB: "portal"
+    POSTGRES_USER: "portal"
+    POSTGRES_PASSWORD: "12345678"
+  volumes_from:
+    - webapp
+db2:
+  image: mysql
+  environment:
+    MYSQL_USER: "test"
+    MYSQL_DATABASE: "test_db"
+    MYSQL_CONTAINER_NAME: "mysql"
+    MYSQL_ALLOW_EMPTY_PASSWORD: yes
   volumes_from:
     - webapp
