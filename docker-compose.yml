@@ -32,10 +32,10 @@ php-7:
   links:
     - db
 db:
-  image: postgres
+  build: postgres
   environment:
-    POSTGRES_DB: "portal"
-    POSTGRES_USER: "portal"
+    POSTGRES_DB: "sweet_db"
+    POSTGRES_USER: "sweet_user"
     POSTGRES_PASSWORD: "12345678"
   volumes_from:
     - webapp
@@ -45,6 +45,6 @@ db2:
     MYSQL_USER: "test"
     MYSQL_DATABASE: "test_db"
     MYSQL_CONTAINER_NAME: "mysql"
-    MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   volumes_from:
     - webapp
