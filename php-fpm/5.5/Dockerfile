@@ -2,17 +2,19 @@ FROM php:5.5-fpm
 
 MAINTAINER Anton Stuchinscky <winshiftq@gmail.com>
 
-# install postgresql modules
+# install extension for php
 RUN apt-get update && apt-get install -y \
         libpq5 \
+        zlib1g-dev \
+        libicu-dev \
+        g++ \
         libpq-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng12-dev \
         gettext \
-    && docker-php-ext-install pgsql pdo_pgsql mbstring gettext \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd
+    && docker-php-ext-install pgsql pdo pdo_mysql intl pdo_pgsql mbstring gettext gd \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
 # install xdebug module
 RUN pecl install -o -f xdebug \
