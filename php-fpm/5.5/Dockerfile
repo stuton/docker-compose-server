@@ -13,8 +13,9 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libpng12-dev \
         gettext \
-    && docker-php-ext-install pgsql pdo pdo_mysql intl pdo_pgsql mbstring gettext gd \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
+    && docker-php-ext-install pgsql pdo pdo_mysql intl pdo_pgsql mbstring gettext \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd
 
 # install xdebug module
 RUN pecl install -o -f xdebug \
