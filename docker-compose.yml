@@ -12,7 +12,8 @@ nginx:
   links:
     - php-5.5
     - php-5.6
-    - php-7
+    - php-7.0
+    - php-7.1
 php-5.5:
   build: php-fpm/5.5
   volumes_from:
@@ -25,25 +26,31 @@ php-5.6:
     - webapp
   links:
     - db
-php-7:
-  build: php-fpm/7
+php-7.0:
+  build: php-fpm/7.0
+  volumes_from:
+    - webapp
+  links:
+    - db
+php-7.1:
+  build: php-fpm/7.1
   volumes_from:
     - webapp
   links:
     - db
 db:
-  build: postgres
+  image: postgres
   environment:
-    POSTGRES_DB: "sweet_db"
-    POSTGRES_USER: "sweet_user"
-    POSTGRES_PASSWORD: "12345678"
+    POSTGRES_DB: "your_db"
+    POSTGRES_USER: "your_user"
+    POSTGRES_PASSWORD: "your_password"
   volumes_from:
     - webapp
 db2:
   image: mysql
   environment:
-    MYSQL_USER: "test"
-    MYSQL_DATABASE: "test_db"
+    MYSQL_USER: "your_user"
+    MYSQL_DATABASE: "your_db"
     MYSQL_CONTAINER_NAME: "mysql"
     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   volumes_from:

@@ -2,8 +2,8 @@ FROM nginx
 
 MAINTAINER Anton Stuchinscky <winshiftq@gmail.com>
 
-ADD nginx.conf /etc/nginx/
-ADD config/ /etc/nginx/sites-enabled/
+ADD config/nginx.conf /etc/nginx/
+ADD sites-enabled/ /etc/nginx/sites-enabled/
 
 RUN usermod -u 1000 www-data
 
